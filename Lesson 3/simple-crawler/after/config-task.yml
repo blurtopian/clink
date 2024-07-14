@@ -1,10 +1,9 @@
 # Name and metadata of your task
-task_name: 'Simple Crawler'
-author: 'Your Name | Koii Network'
-description: 'This is a simple web crawler example task that scrapes information on redflagdeals'
-repositoryUrl: '' #replace with your own repo url
-imageUrl: 'imageUrl'
-
+task_name: 'CLink Git Archiver'
+author: 'East'
+description: 'A simple git task that gets the latest commit hash from a specific repo and uploads the hash to IPFS for later retrieval.'
+repositoryUrl: 'https://github.com/blurtopian/clink' #replace with your own repo url
+imageUrl: 'https://i.ibb.co/rct9M08/output.png'
 # network value can be DEVELOPMENT , ARWEAVE or IPFS, Recommended IPFS when deploying to testnet as the cli automatically takes care of uploading the executable with the help of web3.js key
 task_executable_network: 'IPFS'
 
@@ -19,7 +18,7 @@ submission_window: 350
 
 # Amounts in KOII
 
-minimum_stake_amount: 1.9
+minimum_stake_amount: 0.9
 
 # total_bounty_amount cannot be grater than bounty_amount_per_round
 # total bounty is not accepted in case of update task
@@ -44,8 +43,11 @@ requirementsTags:
   - type: STORAGE
     value: '5 GB'
   - type: TASK_VARIABLE
-    value: 'KEYWORD'
-    description: 'keyword to search for'
+    value: 'GIT_REPO'
+    description: 'Link to repo whose issues, pull requests, and commits will be retrieved'
+  - type: TASK_VARIABLE
+    value: 'GIT_API_TOKEN'
+    description: 'Not used. Holder for github API token.'
 
 task_id: ' '
 

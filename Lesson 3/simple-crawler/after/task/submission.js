@@ -1,5 +1,6 @@
 const { namespaceWrapper } = require('@_koii/namespace-wrapper');
 const { KoiiStorageClient } = require('@_koii/storage-task-sdk');
+const SimpleClonerTask = require('../cloner/SimpleClonerTask');
 const fs = require('fs');
 
 class Submission {
@@ -8,8 +9,8 @@ class Submission {
   async task(round) {
     try {
       console.log('task called with round', round);
-      const newTask = new SimpleCrawlerTask(process.env.KEYWORD);
-      const newTitles = await newTask.crawl();
+      const newTask = new SimpleClonerTask('https://github.com/blurtopian/clink_test.git');
+      const newTitles = await newTask.getLatestCommit();
       const cid = await this.storeFile(newTitles);
       await namespaceWrapper.storeSet("cid", cid);
       return 'Done';
@@ -42,9 +43,6 @@ class Submission {
       fs.writeFileSync(`${basePath}/${filename}`, JSON.stringify(data));
 
       const userStaking = await namespaceWrapper.getSubmitterAccount();
-
-
-
       const { cid } = await client.uploadFile(`${basePath}/${filename}`,userStaking);
 
       console.log(`Stored file CID: ${cid}`);
