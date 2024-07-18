@@ -1,133 +1,51 @@
-![banner_with_icon](https://github.com/koii-network/ezsandbox/assets/113378734/40046741-843f-47f4-9bf8-76a57198cc81)
+# Koii Simple Crawler
 
-Powered by [Koii](https://koii.network) - Over 60,000 community devices at your fingertips
+This is a simple web crawler that scavenges redflagdeals!
 
-Curious to see the source code? [Learn More](#open-source-roadmap)
+## How to Setup
 
-# Welcome to EZSandbox
+1. Clone this repo
+2. Run `npm install`
+3. Run `npm test` to simulate rounds or `npm run prod-debug` for the live debugger
 
-In this series of workshops, we'll get you up and running to build your first community-hosted application in no time.
+## Structure Breakdown
 
-This sandbox will take you through a few phases of development to try using Koii Tasks at all levels.
+The task template contains three separate JavaScript files in the task folder that contain all of the functions for a Koii task to function properly.
 
-1. Deploy Locally on your Koii Task Node to Debug and Iterate Rapidly
+```bash
+📦simple-crawler
+ ┣ 📂_koiiNode
+ ┃ ┗ 📜koiiNode.js // Contains all the components that task connect to K2.
+ ┣ 📂crawler
+ ┃ ┗ 📜SimpleCrawlerTask.js // Contains web crawler logic
+ ┣ 📂task
+ ┃ ┣ 📜index.js // Main file that contains the task function.
+ ┃ ┣ 📜submission.js // Contains the logic for using keyword for submissions.
+ ┃ ┣ 📜audit.js // Contains the auditTask function.
+ ┃ ┗ 📜distribution.js // Contains the submitDistributionList and auditDistribution function.
+ ┣ 📂tests
+ ┣ 📜config-task.yml
+ ┣ 📜debugger.js
+ ┣ 📜prod-debug.js // used for live debugging
+ ┣ 📜coreLogic.js
+ ┗ 📜index.js
+```
 
-2. Deploy to Docker to test audits and incentive mechanisms
+## What's in the Template
 
-3. Launch on the Community Cloud
+### Core files
 
-# Lessons and Code Samples
+- index.js — is the hub of your app, and ties the other pieces together. This will be the entry point when your task runs on task nodes.
 
-In this project, we'll start by demonstrating the key features of the Node compute environment. After some local testing, we'll harden our incentive mechanism and deploy it to the Koii cloud.
+- \_koiiNode — is a directory that contains koiiNode.js which has the interfaces to make API calls to the core of the task node. It contains all the necessary functions required to submit and audit the work, as well as the distribution lists. Check [here](https://docs.koii.network/develop/write-a-koii-task/task-development-kit-tdk/using-the-task-namespace/the-namespace-object) to learn more about namespace functions.
 
-Koii is a network of people, using their nodes to support a diverse ecosystem of products and services, all operated by community members like you.
+### Task Directory
 
-Decentralized Applications on the Koii Cloud run in modules called 'Tasks' and anyone can join by running a Koii Node, a program users install which manages and runs Tasks.
+It houses three key files: submission.js, audit.js and distribution.js. These files are where you define your task, audit, and distribution logic, enabling you to control the core functionality of the task.
 
-At the end of these tutorials, you'll be ready to build your first Koii Application that other community members can then run on their Node.
+This structure allows a modular approach to task development. By only utilizing these three files, you can easily modify and test your task logic without having to worry about the other aspects. To understand the theory behind this, please refer to the
+[Runtime Flow](https://docs.koii.network/concepts/gradual-consensus/runtime-flow).
 
-<br />
-<br />
+Finally, in the index.js file, all these functions are combined as a task, which is then imported and used in corelogic.js. It is advisable to organize separate features into sub-files and import them into the relevant files before web-packing for better code management and maintainability. This modular approach allows for a more organized and efficient development process.
 
-![Koii tasks](https://github.com/koii-network/ezsandbox/assets/113378734/04edd56a-04e8-4a9f-9b89-752ba046b3ad)
-
-## Lesson 1: Introduction to Koii Tasks
-
-In the first lesson, we'll set up a Koii Node and start debugging an existing Task.
-
-This lesson will teach you:
-
-- How to debug tasks live with your Node
-- How Tasks run in the node
-- How to connect to your node
-
-[Start Here](./Lesson%201/README.md)
-
-<br />
-<br />
-
-![Networking and storage](https://github.com/koii-network/ezsandbox/assets/5794319/14abeb3f-3cb3-4c08-b553-2aa5e2839828)
-
-
-## Lesson 2: Networking and Storage Task
-
-Once we've got the basics down, we can move on to writing a task of our own. We'll learn how to use networking and storage with the example of a simple file server. We'll also see how to deploy our app on a Dockerized node and test it out locally.
-
-[Start Here](./Lesson%202/README.md)
-
-<br />
-<br />
-
-![Secrets & Config](https://github.com/koii-network/ezsandbox/assets/113378734/2d6c43e6-d51b-4eca-80ce-2365ebafa881)
-
-## Lesson 3: Secrets & Config
-
-One of the best use cases for Koii nodes is to gather data from the web. In this tutorial, we'll show you how to use local secrets on your node, take a closer look at the config options, and learn how to build out a full web crawler that runs on any participating Task Nodes.
-
-[Start Here](./Lesson%203/README.md)
-
-<br />
-<br />
-
-![Auditing & Distribution](https://github.com/koii-network/ezsandbox/assets/113378734/d9ecac0d-7c89-4f8e-8038-5f0d77425c63)
-
-## Lesson 4: Auditing & Distribution
-
-We can now start to add audit and distribution mechanisms, learning more about how to verify work and define incentives. We'll also learn how data can be shared between nodes by looking at an example.
-
-[Start Here](./Lesson%204/README.md)
-
-<br />
-<br />
-
-![Security & Hardening](https://github.com/koii-network/ezsandbox/assets/113378734/a2c81c09-a108-483c-80f3-d1271cb2d339)
-
-## Lesson 5: Security & Hardening
-
-Now that you've seen several different types of tasks, this lesson will cover how to add authorized accounts, verify signatures, and manage general authentication and data authority issues.
-
-[Start Here](./Lesson%205/README.md)
-
-<br />
-<br />
-
-![Custom Tokens](https://github.com/koii-network/ezsandbox/assets/113378734/3b3c5c4b-ab28-4a49-9462-de7753586bdf)
-
-## Lesson 6: Using Custom Tokens for Tasks
-
-This lesson will teach you how to deploy your own custom KPL token on Koii.
-
-[Start Here](./Lesson%206/README.md)
-
-<br />
-<br />
-
-![Deployment](https://github.com/koii-network/ezsandbox/assets/113378734/e8bccde8-f815-41fc-9467-26cf982157e0)
-
-## Lesson 7: Deploying your Task
-
-Once everything is tightened down, it's time to get your community and start running nodes. We'll get you a small grant in KOII to fund your task bounty, deploy the task, and run it on your node.
-
-[Start Here](./Lesson%207/README.md)
-
-<br />
-<br />
-
-![Performance Improvements](https://github.com/koii-network/ezsandbox/assets/113378734/65327ccd-8abd-41d4-8719-c1b4f3ed9da4)
-
-## Lesson 8: Performance Improvements
-
-After your task is live, it's time to consider improving your work. In this final lesson, we'll cover some tips on debugging, multi-node simulations, and how to publish an update to your Task.
-
-[Start Here](./Lesson%208/README.md)
-
-<br />
-<br />
-
-# Open Source Roadmap
-Koii is committed to being an open source project, but we are a small team and focused on improving developer and user experience at the moment. 
-- K2 has been audited by Halborn, a leading security firm and the original auditor of the Solana codebase which it was forked from. K2 is planned to be open sourced in mid July 2024. [Click here for the Full Audit Report](https://twitter.com/HalbornSecurity/status/1784862949581938785)
-- The Task Node is currently being audited, and we plan to open source that codebase as soon as it has been fully audited. This decision was made to protect the community of node operators from any critical vulnerabilities, but we do offer the source code to community members, and you can ask to receive access by contacting us on [discord](discord.gg/koii-network). Usually these requests are resolved within 48 hrs. 
-
-## We are sorry that we can't do this sooner. 
-This code base has been rapidly iterated, with now over 70 versions, so it was only recently possible to begin audits and we are keen to open source the codebase right away. 
+For more information about how to customize your own task, please check our docs [here](https://docs.koii.network/develop/write-a-koii-task/task-development-guide/introduction).
